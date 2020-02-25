@@ -1,13 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   TextInput,
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
+  ImageBackground,
+  Image
 } from 'react-native';
 import SubmitButton from '../components/SubmitButton';
+
+import vectorbg from '../images/vectorbg.png'
+import googleIcon from '../images/google-icon.png'
 
 export default class SignIn extends Component {
   state = {
@@ -20,6 +25,7 @@ export default class SignIn extends Component {
       <View style={styles.login}>
         <View style={styles.top}>
           <Text style={styles.heading}>Login</Text>
+          <View style={{ width: 38, marginBottom: 40, height: 2, backgroundColor: '#fff' }} />
           <View style={styles.form}>
             <TextInput
               placeholderTextColor="#fff"
@@ -29,7 +35,7 @@ export default class SignIn extends Component {
               autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
-              onChangeText={text => this.setState({email: text})}
+              onChangeText={text => this.setState({ email: text })}
             />
             <TextInput
               placeholderTextColor="#fff"
@@ -38,14 +44,26 @@ export default class SignIn extends Component {
               autoCompleteType="password"
               textContentType="password"
               secureTextEntry
-              onChangeText={text => this.setState({password: text})}
+              onChangeText={text => this.setState({ password: text })}
             />
-            <SubmitButton
-              onPress={() => this.props.navigation.navigate('Category')}>
-              Continue
-            </SubmitButton>
           </View>
-          <View style={styles.alternatives}>
+        </View>
+        <View style={styles.alternatives}>
+          <ImageBackground source={vectorbg} style={{ flex: 1, width: '100%', height: '100%' }}>
+            <View style={styles.authBtns}>
+              <SubmitButton
+                bgColor="white"
+                color="#333"
+                onPress={() => this.props.navigation.navigate('Category')}>
+                SignUp
+            </SubmitButton>
+              <SubmitButton
+                bgColor="black"
+                color="#fff"
+                onPress={() => this.props.navigation.navigate('Category')}>
+                Login
+            </SubmitButton>
+            </View>
             <Text
               style={{
                 fontFamily: 'HelveticaNeue',
@@ -56,17 +74,11 @@ export default class SignIn extends Component {
               Or login with
             </Text>
             <View style={styles.buttons}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{fontFamily: 'HelveticaNeue'}}>Google</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{fontFamily: 'HelveticaNeue'}}>Facebook</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{fontFamily: 'HelveticaNeue'}}>Twitter</Text>
+              <TouchableOpacity style={styles.googleBtn}>
+                <Image source={googleIcon} style={{ width: '20%', height: '80%' }} />
               </TouchableOpacity>
             </View>
-          </View>
+          </ImageBackground>
         </View>
         {/* <View style={styles.bottom}>
           <Text style={{marginBottom: 18, fontFamily: 'HelveticaNeue'}}>
@@ -95,7 +107,12 @@ const styles = StyleSheet.create({
   top: {
     width: '100%',
     padding: 40,
-    flex: 6,
+    // flex: 1,
+  },
+  alternatives: {
+    flex: 1,
+    width: '100%',
+    height: '100%'
   },
   bottom: {
     flex: 1,
@@ -106,13 +123,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   heading: {
-    fontSize: 40,
-    fontFamily: 'HelveticaNeue',
+    fontSize: 30,
+    fontFamily: 'HelveticaNeue Light',
     alignSelf: 'flex-start',
-    marginBottom: 30,
+    marginBottom: 18,
     color: 'white',
-    fontWeight: '300'
-    
   },
   input: {
     padding: 15,
@@ -120,9 +135,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderRadius: 2,
     marginBottom: 20,
-    fontFamily: 'HelveticaNeue',
+    fontFamily: 'HelveticaNeue Thin',
     color: 'white',
-    fontSize: 16
+    fontSize: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.2)',
   },
   buttons: {
     flexDirection: 'row',
@@ -130,11 +147,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 15,
   },
-  button: {
-    paddingVertical: 15,
-    backgroundColor: '#f2f2f2',
-    width: 90,
-    justifyContent: 'center',
+  googleBtn: {
+    backgroundColor: '#fff',
+    width: 140,
+    height: 50,
+    justifyContent: 'space-between',
     alignItems: 'center',
+    flexDirection: 'row',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
+  authBtns: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+    paddingTop: 10
+  }
 });
