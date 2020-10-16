@@ -13,6 +13,8 @@ import SubmitButton from '../components/SubmitButton';
 
 import vectorbg from '../images/vectorbg.png'
 import googleIcon from '../images/google-icon.png'
+import twitterIcon from '../images/twitter.png'
+import logo from '../images/logo.png'
 
 export default class SignIn extends Component {
   state = {
@@ -24,8 +26,9 @@ export default class SignIn extends Component {
     return (
       <View style={styles.login}>
         <View style={styles.top}>
+          <Image source={logo} style={{ width: 100, height: 100, marginLeft: 'auto', marginRight: 'auto', marginBottom: 20 }} />
           <Text style={styles.heading}>Login</Text>
-          <View style={{ width: 38, marginBottom: 40, height: 2, backgroundColor: '#fff' }} />
+          <View style={{ width: 38, marginBottom: 30, height: 2, backgroundColor: '#fff' }} />
           <View style={styles.form}>
             <TextInput
               placeholderTextColor="#fff"
@@ -46,6 +49,7 @@ export default class SignIn extends Component {
               secureTextEntry
               onChangeText={text => this.setState({ password: text })}
             />
+            <Text style={{ alignSelf: 'flex-end', color: '#fff', fontFamily: 'HelveticaNeue Light' }}>Forgot Password?</Text>
           </View>
         </View>
         <View style={styles.alternatives}>
@@ -54,42 +58,35 @@ export default class SignIn extends Component {
               <SubmitButton
                 bgColor="white"
                 color="#333"
-                onPress={() => this.props.navigation.navigate('Category')}>
+                onPress={() => this.props.navigation.navigate('SignUp')}>
                 SignUp
             </SubmitButton>
               <SubmitButton
-                bgColor="black"
+                gradient
                 color="#fff"
-                onPress={() => this.props.navigation.navigate('Category')}>
+                onPress={() => this.props.navigation.navigate('App')}>
                 Login
             </SubmitButton>
             </View>
             <Text
               style={{
-                fontFamily: 'HelveticaNeue',
+                fontFamily: 'HelveticaNeue Thin',
                 fontSize: 14,
-                marginTop: 25,
+                marginTop: 10,
                 alignSelf: 'center',
               }}>
               Or login with
             </Text>
             <View style={styles.buttons}>
-              <TouchableOpacity style={styles.googleBtn}>
-                <Image source={googleIcon} style={{ width: '20%', height: '80%' }} />
+              <TouchableOpacity style={{ marginRight: 40, borderWidth: 1, borderColor: '#eee', padding: 14, borderRadius: 10 }}>
+                <Image source={googleIcon} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+              <TouchableOpacity style={{ borderWidth: 1, borderColor: '#eee', padding: 14, borderRadius: 10 }}>
+                <Image source={twitterIcon} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             </View>
           </ImageBackground>
         </View>
-        {/* <View style={styles.bottom}>
-          <Text style={{marginBottom: 18, fontFamily: 'HelveticaNeue'}}>
-            Don't have an account?
-          </Text>
-          <TouchableOpacity
-            style={[styles.button, {backgroundColor: '#d5d5d5', width: '100%'}]}
-            onPress={() => this.props.navigation.navigate('SignUp')}>
-            <Text style={{fontFamily: 'HelveticaNeue'}}>Sign Up</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     );
   }
@@ -101,12 +98,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     justifyContent: 'center',
-    paddingTop: 100,
     backgroundColor: '#195DC4'
   },
   top: {
     width: '100%',
-    padding: 40,
+    padding: 40
     // flex: 1,
   },
   alternatives: {
@@ -114,19 +110,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  bottom: {
-    flex: 1,
-    backgroundColor: '#f2f2f2',
-    width: '100%',
-    padding: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   heading: {
-    fontSize: 30,
+    fontSize: 28,
     fontFamily: 'HelveticaNeue Light',
     alignSelf: 'flex-start',
-    marginBottom: 18,
+    marginBottom: 15,
     color: 'white',
   },
   input: {
@@ -144,25 +132,8 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-between',
-    marginTop: 15,
-  },
-  googleBtn: {
-    backgroundColor: '#fff',
-    width: 140,
-    height: 50,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.20,
-    shadowRadius: 1.41,
-
-    elevation: 2,
+    justifyContent: 'center',
+    marginTop: 20,
   },
   authBtns: {
     flexDirection: 'row',
